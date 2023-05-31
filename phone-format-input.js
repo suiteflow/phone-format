@@ -1,38 +1,38 @@
-// Wait for the HTML document to fully load.
+<script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Select all HTML elements with the attribute 'suite-input' equal to 'phone'.
     var phoneInputs = document.querySelectorAll('[suite-input="phone"]');
 
-    // For each phone input element.
     phoneInputs.forEach(function(phoneInput) {
-        // Add an event listener that triggers when the value of the input field changes.
         phoneInput.addEventListener('input', function() {
-            // Get the current value of the input field.
             var input = this.value;
-            // Remove any non-digit characters from the input.
+            // remove any non-digit characters
             input = input.replace(/\D/g, '');
-
-            // Get the format attribute of the input field.
+            
             var format = this.getAttribute('suite-format');
             
-            // If the format attribute is 'us'.
             if (format === 'us') {
-                // If the input is at least 10 characters long.
-                if (input.length >= 10) {
-                    // Prepend '+1' to the input and format it as (XXX) XXX-XXXX.
-                    input = '+1 (' + input.substr(0, 3) + ') ' + input.substr(3, 3) + '-' + input.substr(6, 4);
+                // Check if input already starts with '1', if not prepend it
+                if(input.substr(0, 1) !== '1') {
+                    input = '1' + input;
                 }
-            // If the format attribute is 'uk'.
+                // format the input (XXX) XXX-XXXX for US
+                if (input.length >= 11) {
+                    input = '+' + input.substr(0, 1) + ' (' + input.substr(1, 3) + ') ' + input.substr(4, 3) + '-' + input.substr(7, 4);
+                }
             } else if (format === 'uk') {
-                // If the input is at least 10 characters long.
-                if (input.length >= 10) {
-                    // Prepend '+44' to the input and format it as XXXXX XXXXXX.
-                    input = '+44 ' + input.substr(0, 5) + ' ' + input.substr(5);
+                // Check if input already starts with '44', if not prepend it
+                if(input.substr(0, 2) !== '44') {
+                    input = '44' + input;
+                }
+                // format the input XXXXX XXXXXX for UK
+                if (input.length >= 12) {
+                    input = '+' + input.substr(0, 2) + ' ' + input.substr(2, 5) + ' ' + input.substr(7);
                 }
             }
             
-            // Set the value of the input field to the formatted input.
+            // set the input value to the formatted input
             this.value = input;
         });
     });
 });
+</script>
