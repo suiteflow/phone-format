@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", function() {
     var phoneInputs = document.querySelectorAll('[suite-input="phone"]');
 
@@ -35,4 +34,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-</script>
