@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
             var input = this.value;
             // remove any non-digit characters
             input = input.replace(/\D/g, '');
-            
+
             var format = this.getAttribute('suite-format');
-            
+
             if (input.length > 0) {
                 if (format === 'us') {
                     // Check if input already starts with '1', if not prepend it
@@ -28,9 +28,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (input.length >= 12) {
                         input = '+' + input.substr(0, 2) + ' ' + input.substr(2, 5) + ' ' + input.substr(7);
                     }
+                } else if (format === 'kw') {
+                    // Check if input already starts with '965', if not prepend it
+                    if(input.substr(0, 3) !== '965') {
+                        input = '965' + input;
+                    }
+                    // format the input XXXX XXXX for Kuwait
+                    if (input.length >= 11) {
+                        input = '+' + input.substr(0, 3) + ' ' + input.substr(3, 4) + ' ' + input.substr(7, 4);
+                    }
                 }
             }
-            
+
             // set the input value to the formatted input
             this.value = input;
         });
