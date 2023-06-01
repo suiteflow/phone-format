@@ -9,23 +9,25 @@ document.addEventListener("DOMContentLoaded", function() {
             
             var format = this.getAttribute('suite-format');
             
-            if (format === 'us') {
-                // Check if input already starts with '1', if not prepend it
-                if(input.substr(0, 1) !== '1') {
-                    input = '1' + input;
-                }
-                // format the input (XXX) XXX-XXXX for US
-                if (input.length >= 11) {
-                    input = '+' + input.substr(0, 1) + ' (' + input.substr(1, 3) + ') ' + input.substr(4, 3) + '-' + input.substr(7, 4);
-                }
-            } else if (format === 'uk') {
-                // Check if input already starts with '44', if not prepend it
-                if(input.substr(0, 2) !== '44') {
-                    input = '44' + input;
-                }
-                // format the input XXXXX XXXXXX for UK
-                if (input.length >= 12) {
-                    input = '+' + input.substr(0, 2) + ' ' + input.substr(2, 5) + ' ' + input.substr(7);
+            if (input.length > 0) {
+                if (format === 'us') {
+                    // Check if input already starts with '1', if not prepend it
+                    if(input.substr(0, 1) !== '1') {
+                        input = '1' + input;
+                    }
+                    // format the input (XXX) XXX-XXXX for US
+                    if (input.length >= 11) {
+                        input = '+' + input.substr(0, 1) + ' (' + input.substr(1, 3) + ') ' + input.substr(4, 3) + '-' + input.substr(7, 4);
+                    }
+                } else if (format === 'uk') {
+                    // Check if input already starts with '44', if not prepend it
+                    if(input.substr(0, 2) !== '44') {
+                        input = '44' + input;
+                    }
+                    // format the input XXXXX XXXXXX for UK
+                    if (input.length >= 12) {
+                        input = '+' + input.substr(0, 2) + ' ' + input.substr(2, 5) + ' ' + input.substr(7);
+                    }
                 }
             }
             
