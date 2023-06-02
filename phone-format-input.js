@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
             countryCode = '44';
         } else if (format === 'kw') {
             countryCode = '965';
+        } else if (format === 'fr') {
+            countryCode = '33';
         }
 
         // Prepend the country code when the page loads
@@ -37,6 +39,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     // format the input XXXX XXXX for Kuwait
                     if (input.length >= countryCode.length + 9) {
                         input = '+' + input.substr(0, 3) + ' ' + input.substr(3, 4) + ' ' + input.substr(7, 4);
+                    }
+                } else if (format === 'fr') {
+                    // format the input XXXX XXX XXX for France
+                    if (input.length >= countryCode.length + 10) {
+                        input = '+' + input.substr(0, 2) + ' ' + input.substr(2, 4) + ' ' + input.substr(6, 3) + ' ' + input.substr(9);
                     }
                 }
             } else {
