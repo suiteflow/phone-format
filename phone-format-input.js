@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             phoneInput.value = '+' + countryCode + ' ';
         }
 
-        phoneInput.addEventListener('input', function() {
+        phoneInput.addEventListener('keyup', function() {
             var input = this.value;
             // remove any non-digit characters except for the country code
             input = input.replace(new RegExp('(?<!^\\+' + countryCode + ')\\D', 'g'), '');
@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 } else if (format === 'kw') {
                     // format the input XXXX XXXX for Kuwait
-                    if (input.length >= countryCode.length + 9) {
-                        input = '+' + input.substr(0, 3) + ' ' + input.substr(3, 4) + ' ' + input.substr(7, 4);
+                    if (input.length >= countryCode.length + 8) {
+                        input = '+' + input.substr(0, 3) + ' ' + input.substr(3, 4) + ' ' + input.substr(7);
                     }
                 } else if (format === 'fr') {
                     // format the input XXXX XXX XXX for France
